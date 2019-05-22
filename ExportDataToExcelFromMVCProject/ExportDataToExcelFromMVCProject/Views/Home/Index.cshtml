@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ExportExcelFromMVCProject.Models.EmployeeInfoViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <table class="table table-responsive">
+
+            <thead>
+                <tr>
+                    <th>EmployeeId</th>
+                    <th>EmployeeName</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Experience</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        if (item.Experience < 5)
+                        {
+                            <tr style="background-color:red">
+                                <td>@item.EmployeeID</td>
+                                <td>@item.EmployeeName</td>
+                                <td>@item.Email</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Experience</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr style="background-color:green">
+                                <td>@item.EmployeeID</td>
+                                <td>@item.EmployeeName</td>
+                                <td>@item.Email</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Experience</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+        <a href="@Url.Action("ExportToExcel","Home")">Export Excel</a>
+    </div>
+</body>
+</html>
